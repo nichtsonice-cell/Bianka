@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#090808"><title>Bianka — Come Home</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;height:100%;overflow:hidden;background:#090808}body{font-family:Georgia,serif}
+.stage{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(circle,#352b27,#090808 72%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.wrap{position:relative;width:min(88vw,430px);aspect-ratio:1.42/1;perspective:1800px}.shadow{position:absolute;left:5%;right:5%;bottom:-12%;height:20%;border-radius:50%;background:#0009;filter:blur(20px)}
+.book{position:absolute;inset:0;transform-style:preserve-3d;filter:drop-shadow(0 22px 25px #0009)}.page{position:absolute;top:0;bottom:0;width:50%;background:#f6efe4}.left{left:0;border-radius:10px 0 0 10px}.right{right:0;border-radius:0 10px 10px 0}
+.cover{position:absolute;inset:0;background:linear-gradient(145deg,#352722,#100d0c);border:2px solid #594532;border-radius:10px;z-index:5;transform-origin:left center;backface-visibility:hidden;transition:transform 1.35s cubic-bezier(.77,0,.18,1);color:#f8e9cf;display:grid;place-items:center;text-align:center}.cover.open{transform:rotateY(-168deg)}.cover:before{content:"";position:absolute;inset:12px;border:1px solid #c9a56a88;border-radius:6px}
+.content{position:relative}.eyebrow{font:600 10px system-ui;letter-spacing:.3em;text-transform:uppercase;color:#d8b878}h1{font-size:clamp(34px,10vw,52px);font-weight:400;margin:13px 0 5px}.heart{font-size:25px;color:#d8b878;margin:18px}.sub{font:14px system-ui;opacity:.72}
+.copy{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px}.copy small{font:600 9px system-ui;letter-spacing:.2em;text-transform:uppercase;opacity:.45}.copy h2{font-size:22px;font-weight:400;margin:9px 0}.copy p{font:13px/1.6 system-ui;opacity:.62;max-width:190px}
+.open{position:absolute;left:50%;bottom:-78px;transform:translateX(-50%);z-index:20;border:1px solid #fff4;background:#ffffff12;color:#fff;border-radius:999px;padding:14px 23px;min-width:155px;font:600 11px system-ui;letter-spacing:.13em;text-transform:uppercase;backdrop-filter:blur(12px)}.open:active{transform:translateX(-50%) scale(.96)}
+.hint{position:absolute;bottom:calc(23px + env(safe-area-inset-bottom));color:#fff6;font:10px system-ui;letter-spacing:.16em;text-transform:uppercase}.hidden{opacity:0!important;pointer-events:none!important}
+.video{position:fixed;inset:0;background:#000;z-index:50;opacity:0;pointer-events:none;transition:opacity .8s}.video.show{opacity:1;pointer-events:auto}video{width:100%;height:100%;object-fit:cover;display:block}
+.ui{position:absolute;inset:0;padding:calc(18px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom));display:flex;flex-direction:column;justify-content:space-between;pointer-events:none}.top{display:flex;justify-content:space-between;align-items:center}.label{color:#fff;font:600 10px system-ui;letter-spacing:.2em;text-transform:uppercase;text-shadow:0 2px 10px #000}.sound{pointer-events:auto;border:0;background:#0008;color:#fff;border-radius:50%;width:42px;height:42px}.message{align-self:center;color:#fff;background:#0008;border:1px solid #fff3;padding:12px 18px;border-radius:99px;font:11px system-ui;backdrop-filter:blur(10px)}
+</style></head><body>
+<main class="stage"><section class="wrap"><div class="shadow"></div><div class="book">
+<div class="page left"><div class="copy"><small>For Bianka</small><h2>Please come home</h2><p>Some stories don't feel complete until you're back.</p></div></div>
+<div class="page right"><div class="copy"><small>One last page</small><h2>I'm sorry.</h2><p>Bianka, come home. Komm heim.</p></div></div>
+<div class="cover" id="cover"><div class="content"><div class="eyebrow">A little story</div><h1>Bianka</h1><div class="heart">♡</div><div class="sub">I'm sorry. Come home.</div></div></div></div>
+<button class="open" id="open">Open the book</button></section><div class="hint" id="hint">Tap to begin</div></main>
+<section class="video" id="screen"><video id="movie" playsinline webkit-playsinline preload="auto"><source src="bianka.mp4" type="video/mp4"></video>
+<div class="ui"><div class="top"><div class="label">Bianka — Come Home</div><button class="sound" id="sound">🔇</button></div><div class="message" id="message">Tap for sound</div></div></section>
+<script>
+const o=document.getElementById('open'),c=document.getElementById('cover'),h=document.getElementById('hint'),s=document.getElementById('screen'),v=document.getElementById('movie'),b=document.getElementById('sound'),m=document.getElementById('message');
+o.onclick=()=>{c.classList.add('open');o.classList.add('hidden');h.classList.add('hidden');setTimeout(async()=>{s.classList.add('show');v.muted=true;try{await v.play()}catch(e){m.textContent='Tap to play'}},1100)};
+v.onclick=()=>{if(v.paused)v.play();if(v.muted){v.muted=false;b.textContent='🔊';m.classList.add('hidden')}};
+b.onclick=e=>{e.stopPropagation();v.muted=!v.muted;b.textContent=v.muted?'🔇':'🔊';if(!v.muted)m.classList.add('hidden')};
+</script></body></html>
